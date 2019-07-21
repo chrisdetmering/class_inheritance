@@ -1,3 +1,5 @@
+
+
 class Employee
 
     def initialize(name, title, salary)
@@ -14,15 +16,16 @@ class Employee
     def bonus(multiplier)
         bonus = salary * multiplier
 
-        puts bonus
+        puts salary_to_string(bonus)
     end 
 
-    #100000 => 100_000
     def salary_to_string(salary)
+      
+        new_salary = salary.to_s.chars.reverse.map
+        .with_index {|char, idx| idx % 3 == 0 && idx != 0 ? char + '_' : char}
+        .reverse.join("")
 
-
-
-        
+        new_salary
     end 
 
 
@@ -35,8 +38,6 @@ module Subordinatable
     end 
 end 
 
-
-
 class Manager < Employee
 
     include Subordinatable
@@ -46,14 +47,14 @@ class Manager < Employee
         @subordinates = []
     end
 
-    attr_accessor :subordinates, :additional_powers
+    attr_accessor :subordinates
 
 
 
     def bonus(multiplier)
         bonus =  bonus_calculation * multiplier
 
-       puts bonus
+       puts salary_to_string(bonus)
     end 
 
 
@@ -63,7 +64,7 @@ class Manager < Employee
 
         @subordinates.each do |sub| 
 
-           if sub.class == Manager 
+           if sub.is_a?(Manager)
                 total_sub_salaries += sub.salary + sub.bonus_calculation
            else
                 total_sub_salaries += sub.salary
@@ -75,7 +76,7 @@ class Manager < Employee
 
 end 
 
-bobby = Employee.new("bobby", "Bitch", 10000)
+bobby = Employee.new("bobby", "Bitch", 1000000000)
 jimmy = Employee.new("jimmy", "Bitch", 12000)
 
 
@@ -89,6 +90,6 @@ leslie.add_subordinate(jimmy)
 
 chris.add_subordinate(leslie)
 
-leslie.bonus(4)
+chris.bonus(4)
 
 
