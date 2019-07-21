@@ -76,20 +76,4 @@ class Manager < Employee
 
 end 
 
-bobby = Employee.new("bobby", "Bitch", 1000000000)
-jimmy = Employee.new("jimmy", "Bitch", 12000)
-
-
-leslie = Manager.new("Leslie", "Hot Lady", 78000)
-
-
-chris = Manager.new("Chris", "software developer", 1000000)
-
-leslie.add_subordinate(bobby)
-leslie.add_subordinate(jimmy)
-
-chris.add_subordinate(leslie)
-
-chris.bonus(4)
-
 
