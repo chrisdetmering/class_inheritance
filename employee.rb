@@ -13,6 +13,16 @@ class Employee
 
     def bonus(multiplier)
         bonus = salary * multiplier
+
+        puts bonus
+    end 
+
+    #100000 => 100_000
+    def salary_to_string(salary)
+
+
+
+        
     end 
 
 
@@ -20,7 +30,7 @@ end
 
 module Subordinatable
      def add_subordinate(employee)
-        
+        employee.boss = name
        @subordinates << employee
     end 
 end 
@@ -43,19 +53,18 @@ class Manager < Employee
     def bonus(multiplier)
         bonus =  bonus_calculation * multiplier
 
-        bonus
+       puts bonus
     end 
 
 
     def bonus_calculation
-        return salary if subordinates.empty?
-
+       
         total_sub_salaries = 0 
 
         @subordinates.each do |sub| 
 
            if sub.class == Manager 
-                total_sub_salaries += sub.bonus_calculation
+                total_sub_salaries += sub.salary + sub.bonus_calculation
            else
                 total_sub_salaries += sub.salary
            end
@@ -66,15 +75,20 @@ class Manager < Employee
 
 end 
 
+bobby = Employee.new("bobby", "Bitch", 10000)
+jimmy = Employee.new("jimmy", "Bitch", 12000)
 
 
-leslie = Manager.new("Leslie", "Hot Lady", 10000)
+leslie = Manager.new("Leslie", "Hot Lady", 78000)
 
 
-chris = Manager.new("chris", "software developer", 100000)
+chris = Manager.new("Chris", "software developer", 1000000)
+
+leslie.add_subordinate(bobby)
+leslie.add_subordinate(jimmy)
 
 chris.add_subordinate(leslie)
 
-p chris.bonus(5)
+leslie.bonus(4)
 
 
